@@ -51,18 +51,19 @@ int main()
   {
     if(I2C1_master::timeFlag==1) // по прерыванию от таймера считываем показания RTC1307
     {
-      // GPIOC->ODR^=GPIO_ODR_ODR13;
+      GPIOC->ODR^=GPIO_ODR_ODR13;
+      delay_ms(250);
       // I2Cmast.rtc_read();
       // master.sendBytes(&I2Cmast.rtcRead.sec); // отсылаем по SPI
       // master.sendBytes(ModbusMaster::Rx); // отсылаем по SPI
-      master.sendByte(ModbusMaster::Rx[3]);
-      master.sendByte(ModbusMaster::Rx[4]);
-      master.sendByte(ModbusMaster::Rx[5]);
-      master.sendByte(ModbusMaster::Rx[6]);
-      master.sendByte(ModbusMaster::Rx[7]);
-      master.sendByte(ModbusMaster::Rx[8]);
-      master.sendByte(ModbusMaster::Rx[9]);
-      master.sendByte(ModbusMaster::Rx[10]);
+      // master.sendByte(ModbusMaster::Rx[3]);
+      // master.sendByte(ModbusMaster::Rx[4]);
+      // master.sendByte(ModbusMaster::Rx[5]);
+      // master.sendByte(ModbusMaster::Rx[6]);
+      // master.sendByte(ModbusMaster::Rx[7]);
+      // master.sendByte(ModbusMaster::Rx[8]);
+      // master.sendByte(ModbusMaster::Rx[9]);
+      // master.sendByte(ModbusMaster::Rx[10]);
       I2C1_master::timeFlag=0;
       // посылаем запрос по ModBus...
       ModbusMaster::readRequest();   
