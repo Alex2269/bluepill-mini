@@ -1,25 +1,3 @@
-#include "main.h"
-
-volatile uint32_t ticks_delay;
-extern void delay(uint32_t ms);
-static __IO uint32_t s_timer;
-
-extern "C" void SysTick_Handler(void)
-{
-  ticks_delay++;
-}
-
-void delay_ms(__IO uint32_t milisec) 
-{
-  // ------- SysTick CONFIG --------------
-  if (SysTick_Config(24000)) 
-  {
-    while(1);
-  }
-  uint32_t start = ticks_delay;
-  while((ticks_delay - start) < milisec);
-}
-
 int main()
 {
   rcc_ini();
@@ -51,19 +29,18 @@ int main()
   {
     if(I2C1_master::timeFlag==1) // по прерыванию от таймера считываем показания RTC1307
     {
-      GPIOC->ODR^=GPIO_ODR_ODR13;
-      delay_ms(250);
+      // GPIOC->ODR^=GPIO_ODR_ODR13;
       // I2Cmast.rtc_read();
       // master.sendBytes(&I2Cmast.rtcRead.sec); // отсылаем по SPI
       // master.sendBytes(ModbusMaster::Rx); // отсылаем по SPI
-      // master.sendByte(ModbusMaster::Rx[3]);
-      // master.sendByte(ModbusMaster::Rx[4]);
-      // master.sendByte(ModbusMaster::Rx[5]);
-      // master.sendByte(ModbusMaster::Rx[6]);
-      // master.sendByte(ModbusMaster::Rx[7]);
-      // master.sendByte(ModbusMaster::Rx[8]);
-      // master.sendByte(ModbusMaster::Rx[9]);
-      // master.sendByte(ModbusMaster::Rx[10]);
+      master.sendByte(ModbusMaster::Rx[3]);
+      master.sendByte(ModbusMaster::Rx[4]);
+      master.sendByte(ModbusMaster::Rx[5]);
+      master.sendByte(ModbusMaster::Rx[6]);
+      master.sendByte(ModbusMaster::Rx[7]);
+      master.sendByte(ModbusMaster::Rx[8]);
+      master.sendByte(ModbusMaster::Rx[9]);
+      master.sendByte(ModbusMaster::Rx[10]);
       I2C1_master::timeFlag=0;
       // посылаем запрос по ModBus...
       ModbusMaster::readRequest();   
@@ -80,4 +57,3 @@ int main()
   }
   return 0;
 }
-
