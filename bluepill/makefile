@@ -3,8 +3,10 @@
 TARGET = main
 SOURCES = src
 
-INC = inc/
 LIB = lib/
+
+INC += inc
+INC += lib
 
 CC=arm-none-eabi-gcc
 LD = arm-none-eabi-ld 

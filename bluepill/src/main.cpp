@@ -1,3 +1,6 @@
+#include "main.h"
+
+
 int main()
 {
   rcc_ini();
