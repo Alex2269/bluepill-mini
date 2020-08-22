@@ -28,5 +28,5 @@ void rcc_ini()
     FLASH->ACR |= (uint32_t)FLASH_ACR_LATENCY_2; // 1:0 Для частоты 128 MHz следует ставить задержку в два такта 
 
     RCC->CFGR|=RCC_CFGR_SW_PLL;           // переключаемся с HSI на PLL
-	while(!(RCC->CFGR&RCC_CFGR_SWS_PLL)){} // дождемся выставления бита готовности PLL
+    while(!(RCC->CFGR&RCC_CFGR_SWS_PLL)){} // дождемся выставления бита готовности PLL
 }

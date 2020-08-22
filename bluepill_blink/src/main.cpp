@@ -1,4 +1,5 @@
 #include "main.h"
+#include "PhotonPWM.h"
 
 void delay(volatile uint32_t x)
 {
@@ -39,9 +40,9 @@ int main()
   while(1)
   {
     led_off();
-    delay(1000000);
+    delay(1500000);
     led_on();
-    delay(1000000);
+    delay(30000);
   }
   return 0;
 }
